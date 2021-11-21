@@ -31,6 +31,7 @@ namespace AdessoRideShareRestApi
         {
             services.AddDbContext<ContextService>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
             services.AddControllers();
+            services.AddScoped<IContextService, ContextService>();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ITravelService, TravelService>();
 
@@ -55,7 +56,7 @@ namespace AdessoRideShareRestApi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AdessoRideShareRestApi v1"));
             }
 
-            context.Database.Migrate();
+            //context.Database.Migrate();
 
             app.UseHttpsRedirection();
 

@@ -1,5 +1,6 @@
 ﻿using AdessoRideShareRestApi.Infrastructure;
 using AdessoRideShareRestApi.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,34 +10,66 @@ namespace AdessoRideShareRestApi.Services
 {
     public class TravelService : ITravelService
     {
-        public Task<Guid> Create(TravelModel travel)
+
+        private readonly IContextService _dbContext;
+
+        public TravelService(IContextService dbContext)
         {
-            throw new NotImplementedException();
+            _dbContext = dbContext;
+        }
+        public async Task<Guid> Create(TravelModel travel)
+        {
+            travel.CreatedDate = DateTime.Now;
+            _dbContext.Travels.Add(travel);
+            await _dbContext.SaveChangesAsync();
+            return travel.TravelId;
         }
 
-        public Task<bool> Delete(Guid TravelId)
+        public async Task<bool> Update(TravelModel travel)
         {
-            throw new NotImplementedException();
+            try
+            {
+                travel.UpdatedDate = DateTime.Now;
+                _dbContext.Entry(travel).State = EntityState.Modified;
+                _dbContext.Entry(travel).Property(c => c.CreatedDate).IsModified = false;
+
+                var num = await _dbContext.SaveChangesAsync();
+                return num > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
-        public Task<IEnumerable<TravelModel>> Get()
+        public async Task<bool> Delete(Guid id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var travel = await Get(id);
+                _dbContext.Travels.Remove(travel);
+                var num = await _dbContext.SaveChangesAsync();
+                return num > 0;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
 
-        public Task<TravelModel> Get(Guid TravelId)
+        public async Task<IEnumerable<TravelModel>> Get()
         {
-            throw new NotImplementedException();
+            return await _dbContext.Travels.ToListAsync();
         }
 
-        public Task<bool> Update(TravelModel travel)
+        public async Task<TravelModel> Get(Guid id)
         {
-            throw new NotImplementedException();
+            return await _dbContext.Travels.Where(c => c.TravelId == id).FirstOrDefaultAsync();
         }
 
-        public Task<bool> Validate(Guid TravelId)
+        public async Task<bool> Validate(Guid id)
         {
-            throw new NotImplementedException();
+            return await _dbContext.Travels.Where(c => c.TravelId == id).CountAsync() > 0;
         }
     }
 }

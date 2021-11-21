@@ -10,7 +10,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AdessoRideShareRestApi.Migrations
 {
     [DbContext(typeof(ContextService))]
-    [Migration("20211121092634_InitialCreate")]
+    [Migration("20211121103108_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -20,6 +20,46 @@ namespace AdessoRideShareRestApi.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63)
                 .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+            modelBuilder.Entity("AdessoRideShareRestApi.Models.TravelModel", b =>
+                {
+                    b.Property<Guid>("TravelId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("EndCity")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("SeatingCapacity")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("StartCity")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("TravelDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<Guid>("UserID")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("TravelId");
+
+                    b.ToTable("Travels");
+                });
 
             modelBuilder.Entity("AdessoRideShareRestApi.Models.UserModel", b =>
                 {

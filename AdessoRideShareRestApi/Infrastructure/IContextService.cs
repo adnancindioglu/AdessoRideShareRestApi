@@ -11,6 +11,7 @@ namespace AdessoRideShareRestApi.Infrastructure
     public interface IContextService
     {
         DbSet<UserModel> Users { get; set; }
+        DbSet<TravelModel> Travels { get; set; }
         Task<int> SaveChangesAsync();
         EntityEntry<TEntity> Entry<TEntity>(TEntity entity) where TEntity : class;
     }

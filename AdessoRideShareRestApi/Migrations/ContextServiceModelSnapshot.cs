@@ -19,6 +19,46 @@ namespace AdessoRideShareRestApi.Migrations
                 .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+            modelBuilder.Entity("AdessoRideShareRestApi.Models.TravelModel", b =>
+                {
+                    b.Property<Guid>("TravelId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("text");
+
+                    b.Property<string>("EndCity")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("boolean");
+
+                    b.Property<int>("SeatingCapacity")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("StartCity")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<DateTime>("TravelDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<Guid>("UserID")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("TravelId");
+
+                    b.ToTable("Travels");
+                });
+
             modelBuilder.Entity("AdessoRideShareRestApi.Models.UserModel", b =>
                 {
                     b.Property<Guid>("UserId")

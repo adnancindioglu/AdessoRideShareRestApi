@@ -15,6 +15,7 @@ namespace AdessoRideShareRestApi.Services
         }
 
         public DbSet<UserModel> Users { get; set; }
+        public DbSet<TravelModel> Travels { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
