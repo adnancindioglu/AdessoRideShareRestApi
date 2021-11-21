@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31729.503
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdessoRideShareRestApi", "AdessoRideShareRestApi\AdessoRideShareRestApi.csproj", "{B8F99E40-0ECD-4B7E-B731-1269F29567DF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B8F99E40-0ECD-4B7E-B731-1269F29567DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8F99E40-0ECD-4B7E-B731-1269F29567DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8F99E40-0ECD-4B7E-B731-1269F29567DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8F99E40-0ECD-4B7E-B731-1269F29567DF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E1AEDD02-BEE1-42D8-BDC5-86E53DE37934}
+	EndGlobalSection
+EndGlobal
