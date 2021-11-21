@@ -19,6 +19,31 @@ namespace AdessoRideShareRestApi.Migrations
                 .HasAnnotation("ProductVersion", "5.0.12")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+            modelBuilder.Entity("AdessoRideShareRestApi.Models.PassengerModel", b =>
+                {
+                    b.Property<Guid>("PassengerId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<Guid?>("TravelModelTravelId")
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("PassengerId");
+
+                    b.HasIndex("TravelModelTravelId");
+
+                    b.ToTable("PassengerModel");
+                });
+
             modelBuilder.Entity("AdessoRideShareRestApi.Models.TravelModel", b =>
                 {
                     b.Property<Guid>("TravelId")
@@ -84,6 +109,13 @@ namespace AdessoRideShareRestApi.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("AdessoRideShareRestApi.Models.PassengerModel", b =>
+                {
+                    b.HasOne("AdessoRideShareRestApi.Models.TravelModel", null)
+                        .WithMany("Passengers")
+                        .HasForeignKey("TravelModelTravelId");
+                });
+
             modelBuilder.Entity("AdessoRideShareRestApi.Models.UserModel", b =>
                 {
                     b.OwnsOne("System.Collections.Generic.List<AdessoRideShareRestApi.Models.TravelModel>", "Travel", b1 =>
@@ -102,8 +134,12 @@ namespace AdessoRideShareRestApi.Migrations
                                 .HasForeignKey("UserModelUserId");
                         });
 
-                    b.Navigation("Travel")
-                        .IsRequired();
+                    b.Navigation("Travel");
+                });
+
+            modelBuilder.Entity("AdessoRideShareRestApi.Models.TravelModel", b =>
+                {
+                    b.Navigation("Passengers");
                 });
 #pragma warning restore 612, 618
         }

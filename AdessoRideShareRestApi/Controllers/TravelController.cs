@@ -24,9 +24,9 @@ namespace AdessoRideShareRestApi.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get(string startCity = null, string endCity = null)
         {
-            var travels = await _travelService.Get();
+            var travels = await _travelService.Get(startCity, endCity);
             var travelsModel = _mapper.Map<IEnumerable<TravelModel>>(travels);
             return Ok(travelsModel);
         }

@@ -36,21 +36,50 @@ namespace AdessoRideShareRestApi.Migrations
                     LastName = table.Column<string>(type: "text", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
-                    Travel_Capacity = table.Column<int>(type: "integer", nullable: false)
+                    Travel_Capacity = table.Column<int>(type: "integer", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.UserId);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "PassengerModel",
+                columns: table => new
+                {
+                    PassengerId = table.Column<Guid>(type: "uuid", nullable: false),
+                    UserId = table.Column<Guid>(type: "uuid", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "timestamp without time zone", nullable: true),
+                    TravelModelTravelId = table.Column<Guid>(type: "uuid", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PassengerModel", x => x.PassengerId);
+                    table.ForeignKey(
+                        name: "FK_PassengerModel_Travels_TravelModelTravelId",
+                        column: x => x.TravelModelTravelId,
+                        principalTable: "Travels",
+                        principalColumn: "TravelId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PassengerModel_TravelModelTravelId",
+                table: "PassengerModel",
+                column: "TravelModelTravelId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Travels");
+                name: "PassengerModel");
 
             migrationBuilder.DropTable(
                 name: "Users");
+
+            migrationBuilder.DropTable(
+                name: "Travels");
         }
     }
 }

@@ -6,21 +6,16 @@ using System.Threading.Tasks;
 
 namespace AdessoRideShareRestApi.Models
 {
-    public class UserModel
+    public class PassengerModel
     {
         [Key]
+        public Guid PassengerId { get; set; }
+
+        [Required]
         public Guid UserId { get; set; }
-
-        [Required]
-        public string FirstName { get; set; }
-
-        [Required]
-        public string LastName { get; set; }
 
         [Required]
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
-
-        public List<TravelModel> Travel { get; set; }
     }
 }

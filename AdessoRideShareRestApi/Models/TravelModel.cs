@@ -34,5 +34,7 @@ namespace AdessoRideShareRestApi.Models
         [Required]
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
+
+        public List<PassengerModel> Passengers { get; set; }
     }
 }

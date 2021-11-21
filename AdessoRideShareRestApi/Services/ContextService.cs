@@ -22,6 +22,10 @@ namespace AdessoRideShareRestApi.Services
             modelBuilder.Entity<UserModel>()
                 .OwnsOne(c => c.Travel)
                 .WithOwner();
+
+            modelBuilder.Entity<TravelModel>()
+                .HasMany(t => t.Passengers)
+                .WithOne();
         }
 
         public async Task<int> SaveChangesAsync()

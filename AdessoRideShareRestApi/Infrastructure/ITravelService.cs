@@ -11,8 +11,9 @@ namespace AdessoRideShareRestApi.Infrastructure
         public Task<Guid> Create(TravelModel travel);
         public Task<bool> Update(TravelModel travel);
         public Task<bool> Delete(Guid TravelId);
-        public Task<IEnumerable<TravelModel>> Get();
+        public Task<IEnumerable<TravelModel>> Get(string startCity = null, string endCity = null);
         public Task<TravelModel> Get(Guid TravelId);
+        public Task<TravelModel> GetActive(Guid TravelId);
         public Task<bool> Validate(Guid TravelId);
     }
 }

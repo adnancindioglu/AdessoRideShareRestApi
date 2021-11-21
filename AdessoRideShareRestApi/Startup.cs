@@ -56,7 +56,7 @@ namespace AdessoRideShareRestApi
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AdessoRideShareRestApi v1"));
             }
 
-            //context.Database.Migrate();
+            context.Database.Migrate();
 
             app.UseHttpsRedirection();
 
